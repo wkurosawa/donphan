@@ -96,6 +96,7 @@ class { 'imagemagick': }
 
   exec { "/usr/bin/psql -d template1 -c 'CREATE EXTENSION hstore;'":
     user   => "postgres",
+    require => Class['postgresql::server'],
     unless => "/usr/bin/psql -d template1 -c '\\dx' | grep hstore",
   }
 
